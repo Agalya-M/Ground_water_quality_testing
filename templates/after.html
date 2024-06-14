@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap");
+      body {
+        font-family: "Playfair Display", serif;
+      }
+      .gradient-bg {
+        background-color: #8ec5fc;
+        background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex h-screen gradient-bg">
+      <div class="flex-1 flex text-4xl text-white justify-center items-center">
+        <h1>Water Quality Prediction</h1>
+      </div>
+      <div class="flex-1 flex flex-col items-center justify-center space-y-20">
+        <div>
+          <h1 class="text-3xl text-white underline">PREDICTION</h1>
+        </div>
+
+        {%if data == 0%}
+        <div>
+          <h1 class="text-5xl bg-white px-5 py-3 rounded-md">Not Potable</h1>
+        </div>
+
+        {%else%}
+        <div>
+          <h1 class="text-5xl bg-white px-5 py-3 rounded-md">Potable</h1>
+        </div>
+
+        {%endif%}
+
+        <a href="/">go back to home page</a>
+      </div>
+    </div>
+  </body>
+</html>

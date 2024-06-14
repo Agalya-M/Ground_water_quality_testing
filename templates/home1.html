@@ -1,0 +1,150 @@
+<html>
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap");
+      body {
+        font-family: "Playfair Display", serif;
+      }
+      .gradient-bg {
+        background-color: #8ec5fc;
+        background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+      }
+      /* From uiverse.io */
+      .btn {
+        --glow-color: rgb(217, 176, 255);
+        --glow-spread-color: rgba(191, 123, 255, 0.781);
+        --enhanced-glow-color: rgb(231, 206, 255);
+        --btn-color: rgb(100, 61, 136);
+        border: 0.25em solid var(--glow-color);
+        padding: 1em 3em;
+        color: var(--glow-color);
+        font-size: 15px;
+        font-weight: bold;
+        background-color: var(--btn-color);
+        border-radius: 1em;
+        outline: none;
+        box-shadow: 0 0 1em 0.25em var(--glow-color),
+          0 0 4em 1em var(--glow-spread-color),
+          inset 0 0 0.75em 0.25em var(--glow-color);
+        text-shadow: 0 0 0.5em var(--glow-color);
+        position: relative;
+        transition: all 0.3s;
+      }
+
+      .btn::after {
+        pointer-events: none;
+        content: "";
+        position: absolute;
+        top: 120%;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: var(--glow-spread-color);
+        filter: blur(2em);
+        opacity: 0.7;
+        transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
+      }
+
+      .btn:hover {
+        color: var(--btn-color);
+        background-color: var(--glow-color);
+        box-shadow: 0 0 1em 0.25em var(--glow-color),
+          0 0 4em 2em var(--glow-spread-color),
+          inset 0 0 0.75em 0.25em var(--glow-color);
+      }
+
+      .btn:active {
+        box-shadow: 0 0 0.6em 0.25em var(--glow-color),
+          0 0 2.5em 2em var(--glow-spread-color),
+          inset 0 0 0.5em 0.25em var(--glow-color);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="flex h-screen gradient-bg">
+      <div class="flex-1 flex text-4xl text-white justify-center items-center">
+        <h1>Water Quality Prediction</h1>
+      </div>
+      <div class="flex-1 flex justify-center items-center">
+        <form method="POST" , action="{{url_for('home')}}">
+          <div class="flex justify-center items-center space-x-8">
+            <div class="flex flex-col space-y-5">
+              <input
+                type="text"
+                class="px-2 py-1 rounded-md"
+                placeholder="ph"
+                name="a"
+              />
+              <input
+                type="text"
+                class="px-2 py-1 rounded-md"
+                placeholder="Hardness"
+                name="b"
+              />
+              <input
+                type="text"
+                class="px-2 py-1 rounded-md"
+                placeholder="Solids"
+                name="c"
+              />
+              <input
+                type="text"
+                class="px-2 py-1 rounded-md"
+                placeholder="Chloramines"
+                name="d"
+              />
+            </div>
+            <div class="flex flex-col space-y-5">
+              <input
+                type="text"
+                class="px-2 py-1 rounded-md"
+                placeholder="Sulfate"
+                name="e"
+              />
+              <input
+                type="text"
+                class="px-2 py-1 rounded-md"
+                placeholder="Conductivity"
+                name="f"
+              />
+              <input
+                type="text"
+                class="px-2 py-1 rounded-md"
+                placeholder="Organic carbon"
+                name="g"
+              />
+              <input
+                type="text"
+                class="px-2 py-1 rounded-md"
+                placeholder="Trihalomethanes"
+                name="h"
+              />
+            </div>
+          </div>
+          <div class="flex flex-col items-center">
+            <input
+              type="text"
+              class="px-2 py-1 rounded-md mt-5"
+              placeholder="Turbidity"
+              name="i"
+            />
+            <input
+              type="submit"
+              value="predict"
+              onclick="myFunction()"
+              class="mt-10 btn text-white"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      function myFunction() {
+        $("#demo").load("{{ url_for('home') }}");
+      }
+    </script>
+  </body>
+</html>
